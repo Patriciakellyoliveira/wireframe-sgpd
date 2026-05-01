@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SGPD Wireframe Mobile</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f3f4f6;
+  margin: 0;
+}
+
+.screen {
+  display: none;
+  max-width: 400px;
+  margin: auto;
+  background: white;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.active {
+  display: block;
+}
+
+h2 {
+  text-align: center;
+}
+
+input, button {
+  width: 100%;
+  padding: 5px;
+  margin: 8px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.card {
+  background: #f9fafb;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.navbar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  background: white;
+  border-top: 1px solid #ccc;
+}
+
+.navbar button {
+  flex: 1;
+  background: none;
+  color: black;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="login" class="screen active">
+  <h2>SGPD</h2>
+  <input placeholder="E-mail">
+  <input type="password" placeholder="Senha">
+  <button onclick="goTo('dashboard')">Entrar</button>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard" class="screen">
+  <h2>Dashboard</h2>
+
+  <div class="card">Pendentes: 5</div>
+  <div class="card">Em andamento: 2</div>
+
+  <button onclick="goTo('tarefas')">Ver Tarefas</button>
+  <button onclick="goTo('processos')">Ver Processos</button>
+
+  <div class="navbar">
+    <button onclick="goTo('dashboard')">🏠</button>
+    <button onclick="goTo('tarefas')">📋</button>
+    <button onclick="goTo('processos')">⚙️</button>
+  </div>
+</div>
+
+<!-- TAREFAS -->
+<div id="tarefas" class="screen">
+  <h2>Minhas Tarefas</h2>
+
+  <div class="card" onclick="goTo('detalhe')">
+    Aprovar documento
+  </div>
+
+  <div class="card">
+    Revisar cadastro
+  </div>
+
+  <div class="navbar">
+    <button onclick="goTo('dashboard')">🏠</button>
+    <button onclick="goTo('tarefas')">📋</button>
+    <button onclick="goTo('processos')">⚙️</button>
+  </div>
+</div>
+
+<!-- DETALHE -->
+<div id="detalhe" class="screen">
+  <h2>Detalhe da Tarefa</h2>
+
+  <input placeholder="Comentário">
+  <button>Upload arquivo</button>
+
+  <button onclick="goTo('confirmacao')">Concluir</button>
+
+  <div class="navbar">
+    <button onclick="goTo('dashboard')">🏠</button>
+    <button onclick="goTo('tarefas')">📋</button>
+    <button onclick="goTo('processos')">⚙️</button>
+  </div>
+</div>
+
+<!-- CONFIRMAÇÃO -->
+<div id="confirmacao" class="screen">
+  <h2>✔️ Sucesso</h2>
+  <p>Tarefa concluída!</p>
+  <button onclick="goTo('dashboard')">Voltar</button>
+</div>
+
+<!-- PROCESSOS -->
+<div id="processos" class="screen">
+  <h2>Processos</h2>
+
+  <div class="card">Onboarding RH</div>
+  <div class="card">Aprovação Financeira</div>
+
+  <button onclick="goTo('editor')">Novo Processo</button>
+
+  <div class="navbar">
+    <button onclick="goTo('dashboard')">🏠</button>
+    <button onclick="goTo('tarefas')">📋</button>
+    <button onclick="goTo('processos')">⚙️</button>
+  </div>
+</div>
+
+<!-- EDITOR -->
+<div id="editor" class="screen">
+  <h2>Novo Processo</h2>
+
+  <input placeholder="Nome do processo">
+  <input placeholder="Descrição">
+
+  <button onclick="goTo('confirmacao')">Publicar</button>
+
+  <div class="navbar">
+    <button onclick="goTo('dashboard')">🏠</button>
+    <button onclick="goTo('tarefas')">📋</button>
+    <button onclick="goTo('processos')">⚙️</button>
+  </div>
+</div>
+
+<script>
+function goTo(screenId) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(screenId).classList.add('active');
+}
+</script>
+
+</body>
+</html>
